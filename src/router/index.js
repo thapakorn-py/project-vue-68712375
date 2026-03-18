@@ -18,7 +18,25 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: () => import( '../views/contact.vue')
+  },
+  
+  {
+    path: '/Product_api',
+    name: 'Product_api',
+    component: () => import( '../views/Product_api.vue')
+  },
+  
+  {
+    path: '/Product_list',
+    name: 'Product_list',
+    component: () => import( '../views/Product_list.vue')
+  },
+  {
+    path: '/gold',
+    name: 'gold',
+    component: () => import( '../views/Gold.vue')
   }
+
 ]
 
 const router = createRouter({
@@ -27,3 +45,4 @@ const router = createRouter({
 })
 
 export default router
+

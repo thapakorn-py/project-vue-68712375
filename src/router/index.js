@@ -31,12 +31,37 @@ const routes = [
     name: 'Product_list',
     component: () => import( '../views/Product_list.vue')
   },
+
   {
     path: '/gold',
     name: 'gold',
+    
     component: () => import( '../views/Gold.vue')
-  }
+  },
 
+  {
+    path: '/showcustomer',
+    name: 'showcustomer',
+    component: () => import( '../views//show_customer.vue')
+  },
+
+  {
+    path: '/showemployees',
+    name: 'showemployees',
+    component: () => import( '../views//show_employees.vue')
+  },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import( '../views/login.vue')
+  },
+
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import( '../views/register.vue')
+  }
 ]
 
 const router = createRouter({

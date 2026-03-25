@@ -24,15 +24,29 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Register
+                        Customers
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Register</a></li>
-                        <li><a class="dropdown-item" href="#">Login</a></li>
+                        <li><a class="dropdown-item" href="/showcustomer">show customers</a></li>
+                        <li><a class="dropdown-item" href="/showemployees">show employees</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ currentUser ? currentUser.firstName + ' ' + currentUser.lastName : 'Account' }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li v-if="!currentUser"><router-link class="dropdown-item" to="/register">Register</router-link></li>
+                        <li v-if="!currentUser"><router-link class="dropdown-item" to="/login">Login</router-link></li>
+                        <li v-if="currentUser">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li v-if="currentUser"><a class="dropdown-item" href="#" @click.prevent="logout">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -60,6 +74,29 @@
   <router-view/>
 
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const currentUser = ref(null)
+
+onMounted(() => {
+  const user = localStorage.getItem('user')
+  if (user) {
+    currentUser.value = JSON.parse(user)
+  }
+})
+
+const logout = () => {
+  localStorage.removeItem('user')
+  localStorage.removeItem('token')
+  currentUser.value = null
+  alert('ออกจากระบบสำเร็จ')
+  router.push('/')
+}
+</script>
 
 
 
